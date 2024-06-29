@@ -1,0 +1,32 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+class Solution {
+
+    public static ArrayList<Integer> duplicates(int[] arr) {
+        // Sort the array to bring duplicates together
+        Arrays.sort(arr);
+
+        ArrayList<Integer> res = new ArrayList<>();
+        int n = arr.length;
+        int count = 0; // Initialize count variable
+
+        for (int i = 0; i < n - 1; i++) {
+            // Check if the current element is equal to the next element
+            if (arr[i] == arr[i + 1]) {
+                // Check if the duplicate is not already added
+                if (res.isEmpty() || !res.get(res.size() - 1).equals(arr[i])) {
+                    res.add(arr[i]);
+                    count++;
+                }
+            }
+        }
+
+        // If no duplicates were found, add -1 to the result
+        if (count == 0) {
+            res.add(-1);
+        }
+
+        return res;
+    }
+}
